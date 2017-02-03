@@ -1,12 +1,12 @@
 package com.girish.h3_deque;
 
-public class Deque 
+public class Deque<T> 
 {
-	private DNode first;
-	private DNode last;
+	private DNode<T> first;
+	private DNode<T> last;
 	
 	/**
-	 * Constructor of class Deque 
+	 * Constructor of class Deque<T>
 	 */
 	public Deque()
 	{
@@ -14,16 +14,15 @@ public class Deque
 		last = null;
 	}
 	
-	
 	/**
 	 * This method pushes data in front of the deque
 	 * @param data An integer data which is being pushed on the front of the deque.
 	 */
-	public void push(int data)
+	public void push(T data)
 	{
-		DNode p = new DNode(data);
+		DNode<T> p = new DNode<>(data);
 		
-		if(first == null && last == null)
+		if(first == null || last == null)
 		{
 			first = p;
 			last = p;
@@ -38,14 +37,13 @@ public class Deque
 		display();
 	}
 	
-	
 	/**
 	 * This method removes the data from the front of the deque 
 	 * @return 		The data from the front of the deque.
 	 */
-	public int pop()
+	public T pop()
 	{
-		int data = -1;
+		T data = null;
 		
 		if(first == null)
 		{
@@ -60,6 +58,10 @@ public class Deque
 			{
 				first.llink = null;
 			}
+			else
+			{
+				last = null;
+			}
 			
 			System.out.print("Current Deque: ");
 			display();
@@ -67,16 +69,15 @@ public class Deque
 		return data;
 	}
 	
-	
 	/**
 	 * This method inserts the data to the back of the deque.
 	 * @param data An integer data which is being inserted on the back of the deque.
 	 */
-	public void inject(int data)
+	public void inject(T data)
 	{
-		DNode p = new DNode(data);
+		DNode<T> p = new DNode<>(data);
 		
-		if(first == null && last == null)
+		if(first == null || last == null)
 		{
 			first = p;
 			last = p;
@@ -92,14 +93,13 @@ public class Deque
 		display();
 	}
 	
-	
 	/**
 	 * This method removes the data from the rear end of the deque
 	 * @return 		the item which is removed from the rear end of the deque.
 	 */
-	public int eject()
+	public T eject()
 	{
-		int data = -1;
+		T data = null;
 		
 		if(last == null)
 		{
@@ -114,6 +114,10 @@ public class Deque
 			{
 				last.rlink = null;
 			}
+			else
+			{
+				first = null;
+			}
 			
 			System.out.print("Current Deque: ");
 			display();
@@ -126,7 +130,7 @@ public class Deque
 	 */
 	public void display()
 	{
-		DNode cur = first;
+		DNode<T> cur = first;
 		if(cur == null)
 		{
 			System.out.println("List is empty");

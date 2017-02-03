@@ -7,7 +7,7 @@ public class DequeTester
 
 	public static void main(String[] args) 
 	{
-		Deque d = new Deque();
+		Deque<Integer> d = new Deque<>();
 		int choice = 0;
 		int data = 0;
 		Scanner in = new Scanner(System.in);
